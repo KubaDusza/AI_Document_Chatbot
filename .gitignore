@@ -12,5 +12,6 @@
 /.env
 /embeddings
 /test*
-/secrets
+/secrets*
 /.streamlit
+/secrets.toml
