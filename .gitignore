@@ -12,3 +12,5 @@
 /.env
 /embeddings
 /test*
+/secrets
+/.streamlit
