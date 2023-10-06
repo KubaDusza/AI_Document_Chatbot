@@ -459,7 +459,7 @@ if __name__ == '__main__':
     setup()
 
     if st.experimental_user.email in ALLOWED_EMAILS:
-        st.caption("email:", st.experimental_user.email)
+        write_atsize(f"email: {st.experimental_user.email}", 10)
         main()
     else:
         st.write(f"sorry, email {st.experimental_user.email} has no access")
