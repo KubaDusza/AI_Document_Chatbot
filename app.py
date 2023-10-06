@@ -33,6 +33,8 @@ add multipfocessing when vectorizing:
 
 '''
 
+ACCEPTED_DOCUMENT_TYPES = ["pdf"]
+
 
 EMBEDDINGS_FOLDER = Path("embeddings")
 
@@ -301,7 +303,7 @@ def docs_uploader(container):
     with container:
         if st.session_state.first_file_uploaded:
             docs = st.sidebar.file_uploader('Add your Duckuments here!', accept_multiple_files=True,
-                                   label_visibility="collapsed")
+                                   label_visibility="collapsed", type=ACCEPTED_DOCUMENT_TYPES)
             if docs != st.session_state.docs:
                 # st.session_state.first_file_uploaded = True
                 st.session_state.docs = docs
@@ -312,7 +314,8 @@ def docs_uploader(container):
         else:
 
             docs = st.file_uploader('Add your Duckuments here!', accept_multiple_files=True,
-                                       label_visibility="collapsed", on_change=upload_first_doc_callback)
+                                       label_visibility="collapsed", on_change=upload_first_doc_callback,
+                                    type = ACCEPTED_DOCUMENT_TYPES)
 
             if docs != st.session_state.docs:
                 # st.session_state.first_file_uploaded = True
