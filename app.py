@@ -213,7 +213,7 @@ def clear_regenerate_button_callback():
     st.session_state.messages = []
     st.session_state.display_clear_button = False
 
-def regenerate():
+def regenerate_callback():
     st.session_state.messages = st.session_state.messages[:-2]
     st.session_state.display_clear_button = False
     st.session_state.regenerate = True
@@ -451,7 +451,7 @@ def main():
         button1, button2 = st.columns(2)
 
         button1.button('clear', use_container_width=True, on_click=clear_regenerate_button_callback)
-        button2.button('regenerate', use_container_width=True, on_click=regenerate)
+        button2.button('regenerate', use_container_width=True, on_click=regenerate_callback)
 
 
 
