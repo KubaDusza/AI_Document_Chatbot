@@ -1,3 +1,4 @@
+transformers
 langchain
 PyPDF2
 python-dotenv
@@ -5,5 +6,4 @@ streamlit
 streamlit-extras
 faiss-cpu
 PyMuPDF
-transformers
 openai
