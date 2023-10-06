@@ -127,7 +127,8 @@ def setup():
         st.session_state.docs = []
 
     if "vectorstore" not in st.session_state:
-        st.session_state.vectorstore = FAISS.from_texts([""], OpenAIEmbeddings())
+        st.session_state.vectorstore = FAISS.from_texts([""], OpenAIEmbeddings(), metadatas=[
+            {"doc_uuid": None, "file_name": None}])
 
     if "first_question_asked" not in st.session_state:
         st.session_state.first_question_asked = False
@@ -238,7 +239,8 @@ def handle_documents():
             new_docs = []
             for i, doc in enumerate(st.session_state.docs):
 
-                if i > MAX_NUM_DOCUMENTS:
+                if i >= MAX_NUM_DOCUMENTS:
+                    st.write("stopped at file", doc.name)
                     break
 
                 file_name, extension = os.path.splitext(doc.name)
@@ -256,12 +258,20 @@ def handle_documents():
                     st.session_state.document_dict[tuple(metadata.values())] = {"active": True, "chunk_ids": []}
                     #st.text(st.session_state.document_dict)
 
+            if new_docs:
+                #list_new_docs_names = '\n'.join([doc.metadata["file_name"] for doc in new_docs])
+                st.success(f"uploaded documents:", icon='✅')
+                for doc in new_docs:
+                    st.success(doc.metadata["file_name"])
 
             if MAX_NUM_DOCUMENTS < len(st.session_state.docs):
-                num_not_uploaded = len(st.session_state.docs) - MAX_NUM_DOCUMENTS
+                st.error(f"maximum number of unique documents is {MAX_NUM_DOCUMENTS}. Didn't upload docs:", icon="❌")
+                for doc in st.session_state.docs[MAX_NUM_DOCUMENTS:]:
+                    st.error(doc.name)
 
-                st.error(f"maximum number of documents is {MAX_NUM_DOCUMENTS}.\n"
-                         f"Didn't upload docs {','.join([doc.name for doc in st.session_state.docs[MAX_NUM_DOCUMENTS:]])}")
+
+                #num_not_uploaded = len(st.session_state.docs) - MAX_NUM_DOCUMENTS
+                #list_of_unuploaded_docs = '\n'.join([doc.name for doc in st.session_state.docs[MAX_NUM_DOCUMENTS:]])
 
 
             if len(new_docs) > 0:
@@ -305,7 +315,8 @@ def handle_documents():
 
 
         del_start = time.time()
-        delete_removed_docs()
+        #st.write(st.session_state.docs)
+        #delete_removed_docs()
         del_end = time.time()
         end = time.time()
 
@@ -314,6 +325,7 @@ def handle_documents():
 
 
 def docs_uploader(container):
+
     with container:
         if st.session_state.first_file_uploaded:
             docs = st.sidebar.file_uploader('Add your Duckuments here!', accept_multiple_files=True,
@@ -337,13 +349,15 @@ def docs_uploader(container):
                 with st.sidebar:
                     handle_documents()
 
+    delete_removed_docs(docs)
 
 
 
 
 
-def delete_removed_docs():
-    doc_metadata = [(get_uuid(get_doc_text(doc)), os.path.splitext(doc.name)[0]) for doc in st.session_state.docs]
+
+def delete_removed_docs(docs):
+    doc_metadata = [(get_uuid(get_doc_text(doc)), os.path.splitext(doc.name)[0]) for doc in docs]
     #st.write("deleting unused docs:")
     #st.write("st.session_state.docs:", st.session_state.docs)
     #st.text("document dict: " + str(st.session_state.document_dict))
@@ -352,15 +366,31 @@ def delete_removed_docs():
 
     for metadata, data in st.session_state.document_dict.items():
         if metadata not in doc_metadata:
+            docs_to_delete.append(metadata)
             if not data["chunk_ids"]:
                 continue
             #st.write("removed doc", metadata)
             st.session_state.vectorstore.delete(data["chunk_ids"])
-            docs_to_delete.append(metadata)
-
 
     for doc in docs_to_delete:
         del st.session_state.document_dict[doc]
+
+    chunks_to_delete = []
+
+    for id, doc in st.session_state.vectorstore.docstore._dict.items():
+        metadata = (doc.metadata["doc_uuid"], doc.metadata["file_name"])
+
+        if not st.session_state.document_dict.get(metadata, False):
+            chunks_to_delete.append(id)
+
+    if chunks_to_delete:
+        st.session_state.vectorstore.delete(chunks_to_delete)
+
+
+
+
+
+
 
 
 def sticky_header():
@@ -447,8 +477,6 @@ def main():
 
 
 
-
-
     #if st.session_state.first_file_uploaded:
     chat()
 
@@ -456,8 +484,11 @@ def main():
 
     docs_uploader(uploader_placeholder)
 
+    #st.write(st.session_state.docs)
+    #st.text(st.session_state.document_dict)
+
         #st.write("chat history:", st.session_state.messages[1:])
-        #log()
+    #log()
 
     if st.session_state.messages:
         st.session_state.display_clear_button = True
