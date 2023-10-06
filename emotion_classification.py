@@ -1,6 +1,6 @@
-#from transformers import pipeline
+from transformers import pipeline
 
-"""
+
 DEFAULT_EMOTION_EMOTICONS = {
     'anger': '🤬',
     'disgust': '🤢',
@@ -33,4 +33,3 @@ if __name__ == '__main__':
     print(ec.classify("Im sorry for you. in this document..."))
 
 
-"""
