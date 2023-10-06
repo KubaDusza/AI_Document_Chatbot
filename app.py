@@ -1,6 +1,6 @@
 import streamlit as st
 from dotenv import load_dotenv
-from emotion_classification import EmotionClassifier
+#from emotion_classification import EmotionClassifier
 import openai
 import os
 from pathlib import Path
@@ -88,8 +88,8 @@ def setup():
     if "my_avatar" not in st.session_state:
         st.session_state.my_avatar = "🤠"
 
-    if "emotion_classifier" not in st.session_state:
-        st.session_state.emotion_classifier = EmotionClassifier()
+    #if "emotion_classifier" not in st.session_state:
+        #st.session_state.emotion_classifier = EmotionClassifier()
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -390,7 +390,7 @@ def ask_question():
         st.session_state.regenerate = False
 
     if prompt:
-        avatar = st.session_state.emotion_classifier.classify(prompt)
+        avatar = "🙂" #st.session_state.emotion_classifier.classify(prompt)
 
         with st.chat_message("user", avatar=avatar):
             st.markdown(prompt)
@@ -444,7 +444,7 @@ def main():
         st.session_state.display_clear_button = True
 
 
-    #st.write(st.session_state.prompts)
+    # fytst.write(st.session_state.prompts)
 
     if st.session_state.display_clear_button:
 
