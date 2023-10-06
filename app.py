@@ -35,6 +35,8 @@ add multipfocessing when vectorizing:
 
 ACCEPTED_DOCUMENT_TYPES = ["pdf"]
 
+MAX_NUM_DOCUMENTS = 5
+
 
 EMBEDDINGS_FOLDER = Path("embeddings")
 
@@ -234,11 +236,14 @@ def handle_documents():
         with st.spinner("Processing files"):
 
             new_docs = []
-            for doc in st.session_state.docs:
+            for i, doc in enumerate(st.session_state.docs):
 
-                raw_text = get_doc_text(doc)
+                if i > MAX_NUM_DOCUMENTS:
+                    break
 
                 file_name, extension = os.path.splitext(doc.name)
+
+                raw_text = get_doc_text(doc)
 
                 doc_uuid = get_uuid(raw_text)
                 metadata = {"doc_uuid": doc_uuid, "file_name": file_name}
@@ -252,6 +257,12 @@ def handle_documents():
                     #st.text(st.session_state.document_dict)
 
 
+            if MAX_NUM_DOCUMENTS < len(st.session_state.docs):
+                num_not_uploaded = len(st.session_state.docs) - MAX_NUM_DOCUMENTS
+
+                st.error(f"maximum number of documents is {MAX_NUM_DOCUMENTS}.\n"
+                         f"Didn't upload docs {','.join([doc.name for doc in st.session_state.docs[MAX_NUM_DOCUMENTS:]])}")
+
 
             if len(new_docs) > 0:
                 doc_start = time.time()
@@ -260,8 +271,11 @@ def handle_documents():
                 metadatas = []
                 chunks = []
                 for doc in new_docs:
-                    chunks += text_splitter.split_text(text=doc.page_content)
-                    metadatas += [doc.metadata for _ in chunks]
+                    new_chunks = text_splitter.split_text(text=doc.page_content)
+                    chunks += new_chunks
+                    metadatas += [doc.metadata for _ in new_chunks]
+
+
 
                 chunking_end = time.time()
                 #st.write(f"chunking new docs took {chunking_end - doc_start} seconds")
