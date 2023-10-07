@@ -554,12 +554,11 @@ if __name__ == '__main__':
         st.write("You can also paste an access key:")
 
         st.session_state.access_key = st.text_input(label="access key", label_visibility="collapsed", type="password",
-                                                    placeholder="access key", on_change=access_key_callback)
+                                                    placeholder="access key")
 
-        if st.session_state.access_key != "":
+        if st.session_state.access_key in allowed_access_keys:
             st.rerun()
 
-        st.write(st.session_state.access_key)
         #st.rerun()
 
         #if st.session_state.access_key in allowed_access_keys:
