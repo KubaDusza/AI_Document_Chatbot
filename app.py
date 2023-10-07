@@ -500,7 +500,7 @@ def main():
     #st.text(st.session_state.document_dict)
 
         #st.write("chat history:", st.session_state.messages[1:])
-    log()
+    #log()
 
     if st.session_state.messages:
         st.session_state.display_clear_button = True
