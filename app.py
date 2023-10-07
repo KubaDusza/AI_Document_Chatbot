@@ -486,7 +486,7 @@ def main():
 
 
 
-    sticky_header()
+
 
     uploader_placeholder = st.empty()
 
@@ -523,6 +523,7 @@ def main():
 if __name__ == '__main__':
 
     setup()
+    sticky_header()
 
     allowed_emails = st.secrets.get("ALLOWED_EMAILS")
     allowed_access_keys = st.secrets.get("ALLOWED_ACCESS_KEYS")
