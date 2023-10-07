@@ -363,6 +363,7 @@ def delete_removed_docs(docs):
     #st.text("document dict: " + str(st.session_state.document_dict))
 
     docs_to_delete = []
+    chunks_to_delete = []
 
     for metadata, data in st.session_state.document_dict.items():
         if metadata not in doc_metadata:
@@ -370,7 +371,15 @@ def delete_removed_docs(docs):
             if not data["chunk_ids"]:
                 continue
             #st.write("removed doc", metadata)
-            st.session_state.vectorstore.delete(data["chunk_ids"])
+            chunks_to_delete += data["chunk_ids"]
+            #st.session_state.vectorstore.delete(data["chunk_ids"])
+
+    if chunks_to_delete:
+        try:
+            st.session_state.vectorstore.delete(chunks_to_delete)
+        except Exception as e:
+            print(f"Error {e}")
+
 
     for doc in docs_to_delete:
         del st.session_state.document_dict[doc]
@@ -488,7 +497,7 @@ def main():
     #st.text(st.session_state.document_dict)
 
         #st.write("chat history:", st.session_state.messages[1:])
-    #log()
+    log()
 
     if st.session_state.messages:
         st.session_state.display_clear_button = True
