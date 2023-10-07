@@ -527,13 +527,20 @@ if __name__ == '__main__':
     allowed_emails = st.secrets.get("ALLOWED_EMAILS")
     allowed_access_keys = st.secrets.get("ALLOWED_ACCESS_KEYS")
 
+
+
+
     if st.experimental_user.email in allowed_emails or st.session_state.access_key in allowed_access_keys:
         #write_atsize(f"email: {st.experimental_user.email}", 10)
         main()
     else:
-        st.write(f"sorry, email {st.experimental_user.email} "
-                 f"has no access. Login to allowed account or paste access key:")
 
+        if st.experimental_user.email is None:
+            st.write("You are not logged in.")
+        else:
+            st.write(f"sorry, email {st.experimental_user.email}has no access.")
+
+        st.write("Login to allowed account or paste access key:")
         st.text_input(label="access key", label_visibility="collapsed", type="password",
                                                     placeholder="access key", key="access_key")
 
