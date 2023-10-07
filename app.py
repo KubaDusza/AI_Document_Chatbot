@@ -42,7 +42,6 @@ EMBEDDINGS_FOLDER = Path("embeddings")
 
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-ALLOWED_EMAILS = ["jacob.dusza@gmail.com", "test@localhost.com", "test@example.com"]
 
 NAME_OF_THE_SITE = "Ducky Chatbot"
 MAIN_ICON = "🐤"
@@ -68,6 +67,7 @@ INSTRUCTION_MESSAGE = {
 
 
 def setup():
+    load_dotenv()
 
     EMBEDDINGS_FOLDER.mkdir(parents=True, exist_ok=True)
 
@@ -141,6 +141,9 @@ def setup():
 
     if "regenerate" not in st.session_state:
         st.session_state.regenerate = False
+
+    if "access_key" not in st.session_state:
+        st.session_state.access_key = ""
 
 def get_uuid(text):
     return uuid.uuid3(uuid.NAMESPACE_DNS, text)
@@ -481,7 +484,7 @@ def log():
 
 def main():
 
-    load_dotenv()
+
 
     sticky_header()
 
@@ -518,10 +521,21 @@ def main():
 
 
 if __name__ == '__main__':
+
     setup()
 
-    #if st.experimental_user.email in ALLOWED_EMAILS:
+    allowed_emails = st.secrets.get("ALLOWED_EMAILS")
+    allowed_access_keys = st.secrets.get("ALLOWED_ACCESS_KEYS")
+
+    if st.experimental_user.email in allowed_emails or st.session_state.access_key in allowed_access_keys:
         #write_atsize(f"email: {st.experimental_user.email}", 10)
-    main()
-    #else:
-    #    st.write(f"sorry, email {st.experimental_user.email} has no access")
+        main()
+    else:
+        st.write(f"sorry, email {st.experimental_user.email} "
+                 f"has no access. Login to allowed account or paste access key:")
+
+        st.text_input(label="access key", label_visibility="collapsed", type="password",
+                                                    placeholder="access key", key="access_key")
+
+        if st.session_state.access_key in allowed_access_keys:
+            main()
