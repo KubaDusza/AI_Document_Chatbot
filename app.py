@@ -78,8 +78,8 @@ def setup():
         initial_sidebar_state="auto",
         menu_items={
             "About": "mailto: jacob.dusza@gmail.com linkedin:https://www.linkedin.com/in/jakub-dusza-041a9023b/",
-            "Get help": "https://www.youtube.com/",
-            "Report a bug": "https://www.youtube.com/"
+            #"Get help": "https://www.youtube.com/",
+            #"Report a bug": "https://www.youtube.com/"
         }
     )
 
