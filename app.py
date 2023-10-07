@@ -540,7 +540,7 @@ if __name__ == '__main__':
         else:
             st.write(f"sorry, email {st.experimental_user.email}has no access.")
 
-        st.write("Login to allowed account or paste access key:")
+        st.write("You can also paste an access key:")
         st.text_input(label="access key", label_visibility="collapsed", type="password",
                                                     placeholder="access key", key="access_key")
 
