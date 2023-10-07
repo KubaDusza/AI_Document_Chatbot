@@ -143,6 +143,7 @@ def setup():
         st.session_state.regenerate = False
 
     if "access_key" not in st.session_state:
+        #st.write("RESET_ACCESS_KEY")
         st.session_state.access_key = ""
 
 def get_uuid(text):
@@ -520,6 +521,11 @@ def main():
 
 
 
+def access_key_callback():
+    st.write("callback")
+    pass
+
+
 if __name__ == '__main__':
 
     setup()
@@ -529,9 +535,13 @@ if __name__ == '__main__':
     allowed_access_keys = st.secrets.get("ALLOWED_ACCESS_KEYS")
 
 
+    #st.write(st.session_state.access_key in allowed_access_keys)
+    #st.write("allowed access keys:", allowed_access_keys)
+    #st.write("access key:", st.session_state.access_key)
 
 
-    if st.experimental_user.email in allowed_emails or st.session_state.access_key in allowed_access_keys:
+    if (st.experimental_user.email in allowed_emails) or (st.session_state.access_key in allowed_access_keys):
+
         #write_atsize(f"email: {st.experimental_user.email}", 10)
         main()
     else:
@@ -542,8 +552,15 @@ if __name__ == '__main__':
             st.write(f"sorry, email {st.experimental_user.email}has no access. Log in to an allowed account")
 
         st.write("You can also paste an access key:")
-        st.text_input(label="access key", label_visibility="collapsed", type="password",
-                                                    placeholder="access key", key="access_key")
 
-        if st.session_state.access_key in allowed_access_keys:
-            main()
+        st.session_state.access_key = st.text_input(label="access key", label_visibility="collapsed", type="password",
+                                                    placeholder="access key", on_change=access_key_callback)
+
+        if st.session_state.access_key != "":
+            st.rerun()
+
+        st.write(st.session_state.access_key)
+        #st.rerun()
+
+        #if st.session_state.access_key in allowed_access_keys:
+        #    main()
