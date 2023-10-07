@@ -393,7 +393,10 @@ def delete_removed_docs(docs):
             chunks_to_delete.append(id)
 
     if chunks_to_delete:
-        st.session_state.vectorstore.delete(chunks_to_delete)
+        try:
+            st.session_state.vectorstore.delete(chunks_to_delete)
+        except Exception as e:
+            print(f"Error {e}")
 
 
 
