@@ -536,7 +536,7 @@ if __name__ == '__main__':
     else:
 
         if st.experimental_user.email is None:
-            st.write("You are not logged in.")
+            st.write("You are not logged in. You can log in or create streamlit accout here:\n https://share.streamlit.io/")
         else:
             st.write(f"sorry, email {st.experimental_user.email}has no access.")
 
