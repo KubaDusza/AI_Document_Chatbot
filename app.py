@@ -538,7 +538,7 @@ if __name__ == '__main__':
         if st.experimental_user.email is None:
             st.write("You are not logged in. You can log in or create streamlit accout here:\n https://share.streamlit.io/")
         else:
-            st.write(f"sorry, email {st.experimental_user.email}has no access.")
+            st.write(f"sorry, email {st.experimental_user.email}has no access. Log in to an allowed account")
 
         st.write("You can also paste an access key:")
         st.text_input(label="access key", label_visibility="collapsed", type="password",
