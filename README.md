@@ -23,7 +23,10 @@ This chatbot allows users to upload documents and chat with the bot to get infor
 This chatbot is built using:
 
 - Streamlit for the web interface
-- Langchain for NLP models and features
+- Langchain for NLP features:
+    - text splitting
+    - embedding
+    - vectorizing, etc.
 - Transformers and Huggingface API for model backends
 - OpenAI API for embeddings and the LLM
 
