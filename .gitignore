@@ -16,3 +16,8 @@
 /.streamlit
 /.streamlit/secrets.toml
 /.streamlit/credentials.toml
+/appTest.py
+/Dockerfile
+/PDF_QA_v3.iml
+/TODO
+
