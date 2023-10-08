@@ -17,7 +17,7 @@ This chatbot allows users to upload documents and chat with the bot to get infor
 - Take in multiple PDFs
 - Answer general and detailed questions to the best of its duck abilities.
 - Provide context and excerpts from uploaded documents
-- Give friendly reminders to be excellent to each other 🦆
+- your emoji will be based on the emotion of the message!
 
 ## Technologies used
 This chatbot is built using:
