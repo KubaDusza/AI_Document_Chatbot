@@ -27,7 +27,7 @@ This chatbot is built using:
     - text splitting
     - embedding
     - vectorizing, etc.
-- Transformers and Huggingface API for model backends
+- Transformers and Huggingface API for the emoji emotion display
 - OpenAI API for embeddings and the LLM
 
 ## TODOs
