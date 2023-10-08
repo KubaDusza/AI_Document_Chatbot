@@ -19,4 +19,5 @@ use FAISS .add_embeddings() after to add the embeddings
 
 2.hashing by page, add access by page, by document etc.
 3.get summarization and other information (ex. total page count, "what are these documents about?") about the whole documents and about all documents to work
-4.start using langchain at every step instead of manually passing the
+4.start using langchain at every step instead of manually passing the promts to openai api
+5.save messages for every user

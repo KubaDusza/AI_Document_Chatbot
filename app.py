@@ -65,7 +65,7 @@ INSTRUCTION_MESSAGE = {
     "content": WHOAMI
 }
 
-@st.cache_resource
+@st.cache_resource(show_spinner=False)
 def get_emotion_classifier():
     return EmotionClassifier()
 

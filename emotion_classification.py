@@ -15,7 +15,7 @@ def get_emotion_dict():
     }
 
 
-@st.cache_resource
+@st.cache_resource(show_spinner=False)
 def get_pipeline():
     return pipeline(task="text-classification",
                     model="j-hartmann/emotion-english-distilroberta-base",
