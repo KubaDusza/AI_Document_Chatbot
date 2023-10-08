@@ -23,6 +23,11 @@ from langchain.chains.question_answering import load_qa_chain
 
 from io import StringIO
 
+
+
+REMOVE_RESTRICTIONS = False
+
+
 # TODO:
 todo = '''
 add OCR
@@ -546,7 +551,7 @@ if __name__ == '__main__':
     #st.write("access key:", st.session_state.access_key)
 
 
-    if (st.experimental_user.email in allowed_emails) or (st.session_state.access_key in allowed_access_keys):
+    if (st.experimental_user.email in allowed_emails) or (st.session_state.access_key in allowed_access_keys) or REMOVE_RESTRICTIONS:
 
         #write_atsize(f"email: {st.experimental_user.email}", 10)
         main()
