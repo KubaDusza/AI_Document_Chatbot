@@ -11,7 +11,7 @@ This chatbot allows users to upload documents and chat with the bot to get infor
 1. Upload PDF documents using the file uploader button
 2. Type a question in the chat interface
 3. The bot will search the documents and try to find the best answer
-4. If relevant text is found, it will be displayed for you!
+4. You can also ask it general questions
 
 ## What can it do?
 - Answer general and detailed questions to the best of its duck abilities.
