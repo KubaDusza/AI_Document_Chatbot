@@ -65,6 +65,10 @@ INSTRUCTION_MESSAGE = {
     "content": WHOAMI
 }
 
+@st.cache_resource
+def get_emotion_classifier():
+    return EmotionClassifier()
+
 
 def setup():
     load_dotenv()
@@ -93,7 +97,7 @@ def setup():
         st.session_state.my_avatar = "🤠"
 
     if "emotion_classifier" not in st.session_state:
-        st.session_state.emotion_classifier = EmotionClassifier()
+        st.session_state.emotion_classifier = get_emotion_classifier()
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -114,8 +118,8 @@ def setup():
             length_function=len
         )
 
-    if "memory" not in st.session_state:
-        st.session_state.memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
+    #if "memory" not in st.session_state:
+    #    st.session_state.memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
 
     if "k" not in st.session_state:
         st.session_state.k = 4
