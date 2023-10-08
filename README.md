@@ -8,7 +8,7 @@ This chatbot allows users to upload documents and chat with the bot to get infor
 
 ## How it works *quack!*
 
-1. Upload PDF or text documents using the file uploader button
+1. Upload PDF documents using the file uploader button
 2. Type a question in the chat interface
 3. The bot will search the documents and try to find the best answer
 4. If relevant text is found, it will be displayed for you!
