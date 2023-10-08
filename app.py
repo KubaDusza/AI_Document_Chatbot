@@ -96,8 +96,8 @@ def setup():
     if "my_avatar" not in st.session_state:
         st.session_state.my_avatar = "🤠"
 
-    if "emotion_classifier" not in st.session_state:
-        st.session_state.emotion_classifier = get_emotion_classifier()
+    #if "emotion_classifier" not in st.session_state:
+    #    st.session_state.emotion_classifier = get_emotion_classifier()
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -203,8 +203,10 @@ def get_response(messages):
 def ai_message(docs):
 
 
-    relevant_docs_messages = [{"role": "system", "content": doc.page_content} for doc in docs]
-
+    if docs:
+        relevant_docs_messages = [{"role": "system", "content": doc.page_content} for doc in docs]
+    else:
+        relevant_docs_messages = [{"role": "system", "content": "there are no available documents from the user"}]
 
     chat_history_header = [{"role": "system", "content": "### end of relevant documents. the next messages contain the chat history ###"}]
 
@@ -457,7 +459,7 @@ def ask_question():
         st.session_state.regenerate = False
 
     if prompt:
-        avatar = st.session_state.emotion_classifier.classify(prompt)
+        avatar = get_emotion_classifier().classify(prompt)
 
         with st.chat_message("user", avatar=avatar):
             st.markdown(prompt)

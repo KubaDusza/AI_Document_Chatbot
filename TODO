@@ -15,3 +15,8 @@ batches = [text_chunks[i:i + batch_size] for i in range(0, len(text_chunks), bat
 
 result_vectors = pool.map(vectorize_text, batches)
 use FAISS .add_embeddings() after to add the embeddings
+
+
+2.hashing by page, add access by page, by document etc.
+3.get summarization and other information (ex. total page count, "what are these documents about?") about the whole documents and about all documents to work
+4.start using langchain at every step instead of manually passing the
