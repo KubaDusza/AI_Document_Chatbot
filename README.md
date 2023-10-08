@@ -37,7 +37,7 @@ This chatbot is built using:
 - Save user messages and session state per user
 - Improve information extraction
 
-##Installation
+## Installation
 you can use it on [duckyai.streamlit.app]( https://duckyai.streamlit.app/) or host it by yourself! it's so easy!
 
 1. Clone the repo
