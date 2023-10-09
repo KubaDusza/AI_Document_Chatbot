@@ -74,7 +74,7 @@ def grant_access():
         else:
             st.write(f"sorry, email {st.experimental_user.email}has no access. Log in to an allowed account")
 
-        st.write("You can also paste an access key:")
+        st.write("Paste an access key:")
 
         st.session_state.access_key = st.text_input(label="access key", label_visibility="collapsed", type="password",
                                                     placeholder="access key")
