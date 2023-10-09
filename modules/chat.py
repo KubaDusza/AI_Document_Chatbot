@@ -79,7 +79,7 @@ def ai_message(docs):
         full_response = ""
         messages = [INSTRUCTION_MESSAGE] + relevant_docs_messages + chat_history_header + [
             {"role": m["role"], "content": m["content"]} for m in
-            st.session_state.messages]
+            st.session_state.messages[SLIDING_CHAT_WINDOW_SIZE:]]
 
         for response in get_response(messages):
             full_response += response.choices[0].delta.get("content", "")

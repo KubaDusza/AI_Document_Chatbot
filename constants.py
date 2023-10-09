@@ -12,6 +12,8 @@ ACCEPTED_DOCUMENT_TYPES = ["pdf"]
 
 MAX_NUM_DOCUMENTS = 5
 
+# the number of messages the chatbot will remember
+SLIDING_CHAT_WINDOW_SIZE = 5
 
 # Chat
 WHOAMI = '''### INSTRUCTIONS:\n
