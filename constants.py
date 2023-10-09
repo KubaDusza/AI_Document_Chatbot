@@ -17,7 +17,7 @@ K = 4
 
 # when chunking the documents
 CHUNK_SIZE = 1000
-CHUNK_OVERLAP = 400
+CHUNK_OVERLAP = 200
 
 
 # the number of messages the chatbot will remember
