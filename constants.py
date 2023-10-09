@@ -16,8 +16,8 @@ MAX_NUM_DOCUMENTS = 5
 K = 4
 
 # when chunking the documents
-CHUNK_SIZE = 500
-CHUNK_OVERLAP = 200
+CHUNK_SIZE = 1000
+CHUNK_OVERLAP = 400
 
 
 # the number of messages the chatbot will remember
