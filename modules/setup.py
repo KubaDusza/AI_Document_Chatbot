@@ -30,8 +30,6 @@ def setup():
     if "openai_model" not in st.session_state:
         st.session_state.openai_model = "gpt-3.5-turbo"
 
-    if "k" not in st.session_state:
-        st.session_state.k = K
 
     if "document_dict" not in st.session_state:
         st.session_state.document_dict = {}

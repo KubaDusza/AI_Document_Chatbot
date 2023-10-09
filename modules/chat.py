@@ -47,13 +47,13 @@ def ask_question():
 
         st.session_state.messages.append({"role": "user", "content": prompt, "avatar": avatar})
 
-        docs = st.session_state.vectorstore.similarity_search(prompt, k=st.session_state.k)
+        docs = st.session_state.vectorstore.similarity_search(prompt, k=K)
 
         # st.write(docs)
 
         ai_message(docs)
 
-        columns = st.columns(st.session_state.k)
+        columns = st.columns(K)
 
         x = '''any_expanded = False
         for i, column in enumerate(columns):

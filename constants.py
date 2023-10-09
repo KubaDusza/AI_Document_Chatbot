@@ -10,7 +10,7 @@ MAIN_ICON = "🐤"
 # document handling
 ACCEPTED_DOCUMENT_TYPES = ["pdf"]
 
-MAX_NUM_DOCUMENTS = 5
+MAX_NUM_DOCUMENTS = 6
 
 # the number of relevant document fragment passed to the bot
 K = 4
