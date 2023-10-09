@@ -17,14 +17,17 @@ This chatbot allows users to upload documents and chat with the bot to get infor
 - Take in multiple PDFs
 - Answer general and detailed questions to the best of its duck abilities.
 - Provide context and excerpts from uploaded documents
-- Give friendly reminders to be excellent to each other 🦆
+- your emoji will be based on the emotion of the message!
 
 ## Technologies used
 This chatbot is built using:
 
 - Streamlit for the web interface
-- Langchain for NLP models and features
-- Transformers and Huggingface API for model backends
+- Langchain for NLP features:
+    - text splitting
+    - embedding
+    - vectorizing, etc.
+- Transformers and Huggingface API for the emoji emotion display
 - OpenAI API for embeddings and the LLM
 
 ## TODOs
@@ -34,7 +37,7 @@ This chatbot is built using:
 - Save user messages and session state per user
 - Improve information extraction
 
-##Installation
+## Installation
 you can use it on [duckyai.streamlit.app]( https://duckyai.streamlit.app/) or host it by yourself! it's so easy!
 
 1. Clone the repo
