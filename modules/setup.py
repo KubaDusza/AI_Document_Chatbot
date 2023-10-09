@@ -68,8 +68,9 @@ def grant_access():
         return True
     else:
         if st.experimental_user.email is None:
-            st.write(
-                "You are not logged in. You can log in or create streamlit accout here:\n https://share.streamlit.io/")
+            st.write("streamlit removed ability to see logged in account (?), so use an access key instead.")
+            #st.write(
+            #    "You are not logged in. You can log in or create streamlit accout here:\n https://share.streamlit.io/")
         else:
             st.write(f"sorry, email {st.experimental_user.email}has no access. Log in to an allowed account")
 
