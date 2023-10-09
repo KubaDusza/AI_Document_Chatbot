@@ -12,8 +12,17 @@ ACCEPTED_DOCUMENT_TYPES = ["pdf"]
 
 MAX_NUM_DOCUMENTS = 5
 
+# the number of relevant document fragment passed to the bot
+K = 4
+
+# when chunking the documents
+CHUNK_SIZE = 500
+CHUNK_OVERLAP = 200
+
+
 # the number of messages the chatbot will remember
 SLIDING_CHAT_WINDOW_SIZE = 5
+
 
 # Chat
 WHOAMI = '''### INSTRUCTIONS:\n
