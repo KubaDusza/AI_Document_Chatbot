@@ -62,7 +62,7 @@ def setup():
 def grant_access():
     allowed_emails = st.secrets.get("ALLOWED_EMAILS")
     allowed_access_keys = st.secrets.get("ALLOWED_ACCESS_KEYS")
-    st.write(st.experimental_user.email)
+
     if (st.experimental_user.email in allowed_emails) or (
             st.session_state.access_key in allowed_access_keys) or REMOVE_RESTRICTIONS:
         return True
