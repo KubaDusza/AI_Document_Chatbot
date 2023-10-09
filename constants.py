@@ -16,7 +16,7 @@ MAX_NUM_DOCUMENTS = 5
 K = 4
 
 # when chunking the documents
-CHUNK_SIZE = 1000
+CHUNK_SIZE = 500
 CHUNK_OVERLAP = 200
 
 
