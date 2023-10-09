@@ -13,7 +13,7 @@ ACCEPTED_DOCUMENT_TYPES = ["pdf"]
 MAX_NUM_DOCUMENTS = 6
 
 # the number of relevant document fragment passed to the bot
-K = 4
+K = 3
 
 # when chunking the documents
 CHUNK_SIZE = 500
