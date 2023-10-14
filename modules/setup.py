@@ -63,7 +63,10 @@ def grant_access():
 
     query_dict = st.experimental_get_query_params()
 
-    st.session_state.access_key = query_dict.get("access_key")
+    query_access_key = query_dict.get("access_key", None)
+
+    if query_access_key:
+        st.session_state.access_key = query_access_key
 
     if (st.experimental_user.email in allowed_emails) or (
             st.session_state.access_key in allowed_access_keys) or REMOVE_RESTRICTIONS:
