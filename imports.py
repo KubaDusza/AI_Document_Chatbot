@@ -4,6 +4,7 @@ import openai
 import os
 import uuid
 import time
+import base64
 
 from langchain.schema import Document
 from PyPDF2 import PdfReader

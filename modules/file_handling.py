@@ -12,6 +12,11 @@ def get_doc_text(doc):
 
     return text
 
+
+
+
+
+
 @st.cache_resource(show_spinner=False)
 def get_text_splitter():
     return RecursiveCharacterTextSplitter(
@@ -46,16 +51,16 @@ def handle_documents():
                     st.session_state.document_dict[tuple(metadata.values())] = {"active": True, "chunk_ids": []}
                     # st.text(st.session_state.document_dict)
 
-            if new_docs:
+            #if new_docs:
                 # list_new_docs_names = '\n'.join([doc.metadata["file_name"] for doc in new_docs])
-                st.success(f"uploaded documents:", icon='✅')
-                for doc in new_docs:
-                    st.success(doc.metadata["file_name"])
+                #st.success(f"uploaded documents:", icon='✅')
+                #for doc in new_docs:
+                 #   st.success(doc.metadata["file_name"])
 
-            if MAX_NUM_DOCUMENTS < len(st.session_state.docs):
-                st.error(f"maximum number of unique documents is {MAX_NUM_DOCUMENTS}. Didn't upload docs:", icon="❌")
-                for doc in st.session_state.docs[MAX_NUM_DOCUMENTS:]:
-                    st.error(doc.name)
+            #if MAX_NUM_DOCUMENTS < len(st.session_state.docs):
+            #    st.error(f"maximum number of unique documents is {MAX_NUM_DOCUMENTS}. Didn't upload docs:", icon="❌")
+             #   for doc in st.session_state.docs[MAX_NUM_DOCUMENTS:]:
+            #        st.error(doc.name)
 
                 # num_not_uploaded = len(st.session_state.docs) - MAX_NUM_DOCUMENTS
                 # list_of_unuploaded_docs = '\n'.join([doc.name for doc in st.session_state.docs[MAX_NUM_DOCUMENTS:]])
@@ -117,6 +122,7 @@ def docs_uploader(container):
 
         current_widget_docs = container.file_uploader('Add your Duckuments here!', accept_multiple_files=True,
                                        label_visibility="collapsed", type=ACCEPTED_DOCUMENT_TYPES)
+
 
         if current_widget_docs != st.session_state.docs:
 

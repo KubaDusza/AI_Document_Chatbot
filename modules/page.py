@@ -1,3 +1,4 @@
+from utils import utils
 from constants import *
 from imports import *
 
@@ -26,6 +27,57 @@ def sticky_header():
     )
 
 
+def pdf_display(pdf_binary, width="100%", height="600px"):
+    pdf_file = utils.get_base64_of_bin_file(pdf_binary)
+    pdf_embed = f"""
+    <iframe
+        src="data:application/pdf;base64,{pdf_file}"
+        width="{width}"
+        height="{height}"
+        type="application/pdf"
+        style="position:relative;width:{width};height:{height};overflow:auto;"
+        frameborder="0"
+    >
+    </iframe>
+    """
+    return pdf_embed
+
+"""def pdf_display(pdf_binary, width = 1000, height = 600):
+    
+    pdf_display = f'''
+    <iframe src="data:application/pdf;base64,{pdf_file}" width="{width}" height="{height}" type="application/pdf">
+    </iframe>
+    '''
+    return pdf_display
+"""
+
+
+
+def display_relevant_fragments(docs):
+
+    if docs is None:
+        return
+
+
+    num_of_fragments = len(docs)
+
+
+    if num_of_fragments != 0:
+        with st.expander(f"relevant fragments", expanded=False):
+
+            columns = st.columns(num_of_fragments)
+            for column, doc in zip(columns, docs):
+
+                    column.text(doc.page_content)
+
+def display_pdfs():
+    if st.session_state.docs:
+        for uploaded_file in st.session_state.docs:
+            with st.expander(f"View PDF: {uploaded_file.name}", expanded=False):
+                st.markdown(
+                    pdf_display(uploaded_file.getbuffer(), width="100%", height="400px"),
+                    unsafe_allow_html=True
+                )
 def clear_regenerate_button_callback():
     st.session_state.messages = []
     st.session_state.display_clear_button = False
@@ -38,8 +90,11 @@ def regenerate_callback():
 
 
 def display_chat_buttons():
+
+
     if st.session_state.messages:
         st.session_state.display_clear_button = True
+
 
     if st.session_state.display_clear_button:
         button1, button2 = st.columns(2)

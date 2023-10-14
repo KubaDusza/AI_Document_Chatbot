@@ -41,3 +41,9 @@ INSTRUCTION_MESSAGE = {
     "role": "system",
     "content": WHOAMI
 }
+
+
+
+REPHRASE_QUESTION_INSTRUCTION_TEXT = ("###INSTRUCTIONS: you are a vector store query engineer. your job is to rephrase the last question with all needed context in the following chat history to perform a simmilarity search on the vectorstore. "
+                                      "You need to construct a query,(it could be a bundle of key words) that will most likely result in relevant fragments being found. RESPOND WITH ONLY THE QUERY."
+                                      "END OF INSTRUCTIONS###")
