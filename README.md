@@ -41,10 +41,15 @@ This chatbot is built using:
 you can use it on [duckyai.streamlit.app]( https://duckyai.streamlit.app/) or host it by yourself! it's so easy!
 
 1. Clone the repo
-2. Create a virtualenv and activate
-3. Install dependencies - pip install -r requirements.txt
-4. Create a credentials file in the .streamlit directory and add OpenAI API key
-5. change the REMOVE_RESTRICTIONS flag n the constants.py to True
-6. Run the app - streamlit run app.py
+2. Create a virtualenv and activate:
+    - on MacOS/Linux:
+        python3 -m venv myenv && source myenv/bin/activate
+    - on Windows:
+        python -m venv myenv && myenv\Scripts\activate
+ 
+4. Install dependencies: pip install -r requirements.txt
+5. Create a credentials file in the .streamlit directory and add OpenAI API key
+6. change the REMOVE_RESTRICTIONS flag n the constants.py to True
+7. Run the app - streamlit run app.py
 
 So come on and give it a quack! The friendliest chatbot around won't quack you up but will do its best to help out. Just be nice and have fun! 🦆🐤
