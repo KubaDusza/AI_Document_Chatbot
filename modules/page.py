@@ -27,31 +27,21 @@ def sticky_header():
     )
 
 
-def pdf_display(pdf_binary, width="100%", height="600px"):
-    pdf_file = utils.get_base64_of_bin_file(pdf_binary)
-    pdf_embed = f"""
-    <iframe
-        src="data:application/pdf;base64,{pdf_file}"
-        width="{width}"
-        height="{height}"
-        type="application/pdf"
-        style="position:relative;width:{width};height:{height};overflow:auto;"
-        frameborder="0"
-    >
-    </iframe>
-    """
-    return pdf_embed
 
-"""def pdf_display(pdf_binary, width = 1000, height = 600):
-    
-    pdf_display = f'''
-    <iframe src="data:application/pdf;base64,{pdf_file}" width="{width}" height="{height}" type="application/pdf">
-    </iframe>
-    '''
-    return pdf_display
-"""
+def display_pdfs():
+    if st.session_state.docs:
+        for uploaded_file in st.session_state.docs:
+            try:
+                pages = convert_from_bytes(uploaded_file.read(), fmt="png", dpi=200)
+                st.write(f"{len(pages)} page(s) loaded!")
 
-
+                # Display images
+                for i, page in enumerate(pages):
+                    bio = io.BytesIO()  # Create a BytesIO object
+                    page.save(bio, format="PNG")  # Save image to BytesIO object
+                    st.image(bio, caption=f"Page {i + 1}", use_column_width=True)  # Display image
+            except Exception as e:
+                st.write("Error processing PDF: ", str(e))
 
 def display_relevant_fragments(docs):
 
@@ -70,14 +60,7 @@ def display_relevant_fragments(docs):
 
                     column.text(doc.page_content)
 
-def display_pdfs():
-    if st.session_state.docs:
-        for uploaded_file in st.session_state.docs:
-            with st.expander(f"View PDF: {uploaded_file.name}", expanded=False):
-                st.markdown(
-                    pdf_display(uploaded_file.getbuffer(), width="100%", height="400px"),
-                    unsafe_allow_html=True
-                )
+
 def clear_regenerate_button_callback():
     st.session_state.messages = []
     st.session_state.display_clear_button = False

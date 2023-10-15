@@ -55,7 +55,7 @@ def ask_question():
 
         docs = st.session_state.vectorstore.similarity_search(rephrased_prompt, k=K)
 
-        display_relevant_fragments(docs)
+        #display_relevant_fragments(docs)
 
         # st.write(docs)
 
@@ -121,5 +121,5 @@ def rephrase_question():
 
     response = get_response([REPHRASE_MESSAGE] + [{"role": "user", "content": messages}], stream=False, temperature=0.2).choices[0].message.get("content", "")
     #response = st.session_state.messages[-1]["content"]
-    st.write(response)
+    #st.write(response)
     return response

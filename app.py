@@ -28,7 +28,7 @@ def main():
     display_chat_buttons()
 
     with st.sidebar:
-        display_pdfs()
+        #display_pdfs()
 
 if __name__ == '__main__':
     load_dotenv()
