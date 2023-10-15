@@ -1,7 +1,6 @@
 
 # 🦆 Ducky Chatbot 🐤
-[ducky chatbot]( https://duckyai.streamlit.app/)
-
+[duckyai.streamlit.app](https://duckyai.streamlit.app/?access_key=bbe22d09-e2dc-40ce-8617-82421a285b05)
 An AI assistant created to be helpful, harmless, and honest. Just like a friendly duck! *quack!*
 
 This chatbot allows users to upload documents and chat with the bot to get information from the documents. The bot will search the uploaded documents and use relevant excerpts to answer your questions.
@@ -35,16 +34,21 @@ This chatbot is built using:
 - Support additional file formats like docx, txt, csv, xslx etc
 - Add multiprocessing when vectorizing document text
 - Save user messages and session state per user
-- Improve information extraction
+- Improve information extraction/retrieval
 
 ## Installation
-you can use it on [duckyai.streamlit.app]( https://duckyai.streamlit.app/) or host it by yourself! it's so easy!
+you can use it on [duckyai.streamlit.app](https://duckyai.streamlit.app/?access_key=bbe22d09-e2dc-40ce-8617-82421a285b05) or host it by yourself! it's so easy!
 
 1. Clone the repo
-2. Create a virtualenv and activate
-3. Install dependencies - pip install -r requirements.txt
-4. Create a credentials file in the .streamlit directory and add OpenAI API key
-5. change the REMOVE_RESTRICTIONS flag n the constants.py to True
-6. Run the app - streamlit run app.py
+2. Create a virtualenv and activate:
+    - on MacOS/Linux:
+        python3 -m venv myenv && source myenv/bin/activate
+    - on Windows:
+        python -m venv myenv && myenv\Scripts\activate
+ 
+4. Install dependencies: pip install -r requirements.txt
+5. Create a credentials file in the .streamlit directory and add OpenAI API key
+6. change the REMOVE_RESTRICTIONS flag in the constants.py to True
+7. Run the app: streamlit run app.py
 
-So come on and give it a quack! The friendliest chatbot around won't quack you up but will do its best to help out. Just be nice and have fun! 🦆🐤
+So come on and give it a quack! The friendliest chatbot around won't quack you up but will do its best to help out. 🦆🐤
