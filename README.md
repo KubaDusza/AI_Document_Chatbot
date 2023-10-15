@@ -1,7 +1,6 @@
 
 # 🦆 Ducky Chatbot 🐤
-[duckyai.streamlit.app]( https://duckyai.streamlit.app/)
-
+[duckyai.streamlit.app](https://duckyai.streamlit.app/?access_key=bbe22d09-e2dc-40ce-8617-82421a285b05)
 An AI assistant created to be helpful, harmless, and honest. Just like a friendly duck! *quack!*
 
 This chatbot allows users to upload documents and chat with the bot to get information from the documents. The bot will search the uploaded documents and use relevant excerpts to answer your questions.
@@ -38,7 +37,7 @@ This chatbot is built using:
 - Improve information extraction/retrieval
 
 ## Installation
-you can use it on [duckyai.streamlit.app]( https://duckyai.streamlit.app/) or host it by yourself! it's so easy!
+you can use it on [duckyai.streamlit.app](https://duckyai.streamlit.app/?access_key=bbe22d09-e2dc-40ce-8617-82421a285b05) or host it by yourself! it's so easy!
 
 1. Clone the repo
 2. Create a virtualenv and activate:
