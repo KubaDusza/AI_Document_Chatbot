@@ -1,6 +1,6 @@
 
 # 🦆 Ducky Chatbot 🐤
-[ducky chatbot]( https://duckyai.streamlit.app/)
+[duckyai.streamlit.app]( https://duckyai.streamlit.app/)
 
 An AI assistant created to be helpful, harmless, and honest. Just like a friendly duck! *quack!*
 
