@@ -35,7 +35,7 @@ This chatbot is built using:
 - Support additional file formats like docx, txt, csv, xslx etc
 - Add multiprocessing when vectorizing document text
 - Save user messages and session state per user
-- Improve information extraction
+- Improve information extraction/retrieval
 
 ## Installation
 you can use it on [duckyai.streamlit.app]( https://duckyai.streamlit.app/) or host it by yourself! it's so easy!
