@@ -27,7 +27,7 @@ def main():
 
     display_chat_buttons()
 
-    with st.sidebar:
+    #with st.sidebar:
         #display_pdfs()
 
 if __name__ == '__main__':
