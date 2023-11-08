@@ -6,7 +6,7 @@ streamlit
 streamlit-extras
 faiss-cpu
 PyMuPDF
-openai
+openai==0.28.1
 tiktoken
 torch
 aspose-ocr-python-net
