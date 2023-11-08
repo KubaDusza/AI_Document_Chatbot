@@ -55,7 +55,7 @@ def ask_question():
 
         docs = st.session_state.vectorstore.similarity_search(rephrased_prompt, k=K)
 
-        #display_relevant_fragments(docs)
+        display_relevant_fragments(docs)
 
         # st.write(docs)
 

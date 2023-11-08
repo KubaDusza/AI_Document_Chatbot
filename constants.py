@@ -13,11 +13,11 @@ ACCEPTED_DOCUMENT_TYPES = ["pdf"]
 MAX_NUM_DOCUMENTS = 6
 
 # the number of relevant document fragment passed to the bot
-K = 3
+K = 1
 
 # when chunking the documents
-CHUNK_SIZE = 500
-CHUNK_OVERLAP = 200
+CHUNK_SIZE = 6000
+CHUNK_OVERLAP = 400
 
 
 # the number of messages the chatbot will remember

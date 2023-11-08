@@ -17,6 +17,8 @@ def get_doc_text(doc):
 
 
 
+
+
 @st.cache_resource(show_spinner=False)
 def get_text_splitter():
     return RecursiveCharacterTextSplitter(
