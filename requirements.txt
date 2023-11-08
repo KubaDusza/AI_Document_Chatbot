@@ -1,5 +1,5 @@
 transformers
-langchain=0.0.308
+langchain==0.0.308
 PyPDF2
 python-dotenv
 streamlit
