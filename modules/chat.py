@@ -12,15 +12,16 @@ def get_emotion_classifier():
     return EmotionClassifier()
 
 
-def get_response(messages, model = None, stream = True, temperature = 1.0):
+def get_response(messages, model = None, stream = True, temperature = 1.0, tools = None):
     if model is None:
         model = st.session_state["openai_model"]
 
-    return openai.ChatCompletion.create(
+    return  st.session_state.openai_client.chat.completions.create(
         model=model,
         messages=messages,
         stream=stream,
-        temperature=temperature)
+        temperature=temperature,
+        tools = tools)
 
 
 def display_chat():
@@ -53,11 +54,15 @@ def ask_question():
 
         rephrased_prompt = rephrase_question()
 
-        docs = st.session_state.vectorstore.similarity_search(rephrased_prompt, k=K)
+        if rephrased_prompt is not None:
 
-        display_relevant_fragments(docs)
+            docs = st.session_state.vectorstore.similarity_search(rephrased_prompt, k=K)
 
-        # st.write(docs)
+            display_relevant_fragments(docs)
+
+            # st.write(docs)
+        else:
+            docs = []
 
         ai_message(docs)
 
@@ -89,8 +94,13 @@ def ai_message(docs):
             {"role": m["role"], "content": m["content"]} for m in
             st.session_state.messages[-SLIDING_CHAT_WINDOW_SIZE:]]
 
-        for response in get_response(messages):
-            full_response += response.choices[0].delta.get("content", "")
+        for chunk in get_response(messages):
+            chunk = chunk.choices[0].delta
+
+            content = getattr(chunk, "content", "")
+            if content:
+                full_response += content
+
             message_placeholder.markdown(full_response + "▌")
 
         message_placeholder.markdown(full_response)
@@ -99,7 +109,7 @@ def ai_message(docs):
 
 
 
-REPHRASE_QUESTION_INSTRUCTION_TEXT = """###INSTRUCTIONS: Construct a query from the last question in the provided chat history, suitable for a similarity search in a vector store, using keywords and context from the history.You can also add other keywords you think will help. Respond only with the query, without any additional prefixes or labels.###"""
+REPHRASE_QUESTION_INSTRUCTION_TEXT = """###INSTRUCTIONS: Construct a query or type \"None\",  from the last question in the provided chat history, suitable for a similarity search in a vector store, using keywords and context from the history. Respond only with the query, without any additional prefixes or labels. If the user message does not ask about or relate to documents, respond with just single word \"None\". ###"""
 
 def rephrase_question():
     REPHRASE_MESSAGE = {
@@ -119,7 +129,12 @@ def rephrase_question():
     #st.text(REPHRASE_MESSAGE)
     #st.text(messages)
 
-    response = get_response([REPHRASE_MESSAGE] + [{"role": "user", "content": messages}], stream=False, temperature=0.2).choices[0].message.get("content", "")
+    response = get_response([REPHRASE_MESSAGE] + [{"role": "user", "content": messages}], stream=False, temperature=0.2).choices[0].message.content
+    print(response)
+
     #response = st.session_state.messages[-1]["content"]
     #st.write(response)
+    if response.strip().replace(".", "").lower() == "none":
+        response = None
+
     return response

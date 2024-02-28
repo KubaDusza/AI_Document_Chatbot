@@ -13,10 +13,10 @@ ACCEPTED_DOCUMENT_TYPES = ["pdf"]
 MAX_NUM_DOCUMENTS = 6
 
 # the number of relevant document fragment passed to the bot
-K = 1
+K = 2
 
 # when chunking the documents
-CHUNK_SIZE = 6000
+CHUNK_SIZE = 3000
 CHUNK_OVERLAP = 400
 
 

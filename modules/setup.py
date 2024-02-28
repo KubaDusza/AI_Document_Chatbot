@@ -28,7 +28,7 @@ def setup():
         st.session_state.messages = []
 
     if "openai_model" not in st.session_state:
-        st.session_state.openai_model = "gpt-3.5-turbo"
+        st.session_state.openai_model = "gpt-4"
 
 
     if "document_dict" not in st.session_state:
@@ -55,6 +55,9 @@ def setup():
 
     if "access_key" not in st.session_state:
         st.session_state.access_key = ""
+
+    if "openai_client" not in st.session_state:
+        st.session_state.openai_client = openai.OpenAI()
 
 
 def grant_access():
