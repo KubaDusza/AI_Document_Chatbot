@@ -52,13 +52,18 @@ def ask_question():
 
         st.session_state.messages.append({"role": "user", "content": prompt, "avatar": avatar})
 
-        rephrased_prompt = rephrase_question()
+        #rephrased_prompt = rephrase_question()
+
+
+        # skipping the reprhasing for now
+
+        rephrased_prompt = prompt
 
         if rephrased_prompt is not None:
 
             docs = st.session_state.vectorstore.similarity_search(rephrased_prompt, k=K)
 
-            display_relevant_fragments(docs)
+            #display_relevant_fragments(docs)
 
             # st.write(docs)
         else:
@@ -109,6 +114,11 @@ def ai_message(docs):
 
 
 
+
+
+####################
+# not used right now
+
 REPHRASE_QUESTION_INSTRUCTION_TEXT = """###INSTRUCTIONS: Construct a query or type \"None\",  from the last question in the provided chat history, suitable for a similarity search in a vector store, using keywords and context from the history. Respond only with the query, without any additional prefixes or labels. If the user message does not ask about or relate to documents, respond with just single word \"None\". ###"""
 
 def rephrase_question():
@@ -116,6 +126,7 @@ def rephrase_question():
         "role": "system",
         "content": REPHRASE_QUESTION_INSTRUCTION_TEXT + f"avaliable file names: " + ", ".join([doc.name for doc in st.session_state.docs])
     }
+
 
     m = st.session_state.messages[-1]
 
@@ -130,7 +141,9 @@ def rephrase_question():
     #st.text(messages)
 
     response = get_response([REPHRASE_MESSAGE] + [{"role": "user", "content": messages}], stream=False, temperature=0.2).choices[0].message.content
-    print(response)
+
+
+    st.write(response)
 
     #response = st.session_state.messages[-1]["content"]
     #st.write(response)
