@@ -4,6 +4,8 @@
 An AI assistant created to be helpful, harmless, and honest. Just like a friendly duck! *quack!*
 
 This chatbot allows users to upload documents and chat with the bot to get information from the documents. The bot will search the uploaded documents and use relevant excerpts to answer your questions.
+The information retrieval system relies on chunking the input documents and vectorizing them, to then use similarity search to retrieve relevant chunks. This was very useful with older GPT models, that had ~3000 context window tokens. Right now, for everyday cases it is not needed, only potentially useful for a very large documents or series of documents.
+
 
 ## How it works *quack!*
 
